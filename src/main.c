@@ -19,9 +19,24 @@
 #define BOTAO_1         GPIO_NUM_22
 #define LED_CONTROLE    GPIO_NUM_21
 
+#define TIMER_DIVIDER   (16)                                // hardware timer clock divider
+#define TIMER_SCALE     (TIMER_BASE_CLK / TIMER_DIVEDER)    // converte o valor do contador em segundos
+
 // 3o - Variaveis globais (evitem se possivel, mas usem com cuidado)
 // uint32_t = unsigned int 32 bits - variavel inteira, sem sinal, com dimensao de 32 bits
 uint32_t contador = 0;
+
+typedef struct {
+    int timer_group;
+    int timer_idx;
+    int alarm_interval;
+    bool auto_reload;
+} exemplo_timer_info_t;
+
+typedef struct {
+    exemplo_timer_info_t info;
+    uint64_t timer_coiunter_value;
+} exemplo_timer_event_t;
 
 // 4o - Prototipos de funcoes presentes no codigo (quando nao usado .h a parte)
 
